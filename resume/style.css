@@ -1,0 +1,384 @@
+/* =============================================
+   CSS 변수 — 다크 테마 기본값
+   ============================================= */
+:root {
+  --bg:            #0a0a0f;
+  --bg-secondary:  #0f0f17;
+  --surface:       #16161f;
+  --surface-hover: #1c1c28;
+  --border:        rgba(139, 92, 246, 0.18);
+  --border-hover:  rgba(139, 92, 246, 0.5);
+  --text:          #f1f0ff;
+  --text-muted:    #8b8ba8;
+  --primary:       #8b5cf6;
+  --primary-light: #a78bfa;
+  --primary-glow:  rgba(139, 92, 246, 0.35);
+}
+
+/* 라이트 모드 오버라이드 */
+html:not(.dark) {
+  --bg:            #f8f7ff;
+  --bg-secondary:  #ffffff;
+  --surface:       #ffffff;
+  --surface-hover: #f3f0ff;
+  --border:        rgba(139, 92, 246, 0.2);
+  --border-hover:  rgba(139, 92, 246, 0.6);
+  --text:          #1a1a2e;
+  --text-muted:    #6b6b88;
+}
+
+/* =============================================
+   기본 리셋 & 글로벌
+   ============================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+/* =============================================
+   네비게이션
+   ============================================= */
+.nav-glass {
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+html:not(.dark) .nav-glass {
+  background: rgba(248, 247, 255, 0.8);
+}
+
+/* 네비게이션 링크 언더라인 */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+.nav-link:hover { color: var(--text); }
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+.nav-link.active { color: var(--text); }
+
+/* =============================================
+   Hero — 글로우 블롭
+   ============================================= */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  z-index: 0;
+}
+.blob-purple  { background: rgba(139, 92, 246, 0.45); }
+.blob-teal    { background: rgba(20, 184, 166, 0.35); }
+.blob-orange  { background: rgba(249, 115, 22, 0.3);  }
+
+/* =============================================
+   그라디언트 텍스트
+   ============================================= */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 60%, #e879f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero 제목 크기 */
+.hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* =============================================
+   프로필 이미지 글로우
+   ============================================= */
+.profile-glow {
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.45),
+    0 0 80px rgba(139, 92, 246, 0.2);
+  transition: box-shadow 0.4s ease;
+}
+.profile-glow:hover {
+  box-shadow:
+    0 0 0 3px rgba(167, 139, 250, 0.8),
+    0 0 60px rgba(139, 92, 246, 0.6),
+    0 0 100px rgba(139, 92, 246, 0.3);
+}
+
+/* =============================================
+   직함 pill 뱃지
+   ============================================= */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-hover);
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--primary-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* =============================================
+   버튼
+   ============================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #7c3aed;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-hover);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+/* =============================================
+   SNS 아이콘
+   ============================================= */
+.sns-icon {
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.sns-icon:hover {
+  color: var(--text);
+  transform: translateY(-3px);
+}
+
+/* =============================================
+   섹션 공통
+   ============================================= */
+.section-bg          { background-color: var(--bg); }
+.section-bg-alt      { background-color: var(--bg-secondary); }
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* 섹션 제목 액센트 라인 */
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), #c084fc);
+  border-radius: 2px;
+  margin-top: 0.75rem;
+}
+
+/* =============================================
+   카드 (glow-card)
+   ============================================= */
+.glow-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.glow-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.18);
+}
+
+/* 프로젝트 카드 hover */
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.22);
+}
+
+/* 프로젝트 이미지 오버레이 */
+.project-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.project-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(10,10,15,0.8));
+}
+.project-img-wrap img {
+  transition: transform 0.4s ease;
+}
+.project-card:hover .project-img-wrap img {
+  transform: scale(1.05);
+}
+
+/* =============================================
+   스킬 배지
+   ============================================= */
+.skill-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--primary-light);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  transition: background 0.2s, transform 0.2s;
+}
+.skill-badge:hover {
+  background: rgba(139, 92, 246, 0.25);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   타임라인
+   ============================================= */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: -2.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+}
+.timeline-item:last-child::before { display: none; }
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -5px; top: 8px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+  border: 2px solid var(--bg-secondary);
+}
+
+/* =============================================
+   날짜 배지
+   ============================================= */
+.date-badge {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* =============================================
+   Contact 카드
+   ============================================= */
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.contact-card:hover { transform: translateY(-4px); }
+
+/* =============================================
+   페이드인 애니메이션
+   ============================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   다크 모드 토글 버튼
+   ============================================= */
+.theme-toggle {
+  width: 2.25rem; height: 2.25rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.theme-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary-light);
+  background: rgba(139, 92, 246, 0.1);
+}
